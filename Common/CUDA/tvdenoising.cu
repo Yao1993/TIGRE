@@ -608,9 +608,9 @@ void checkFreeMemory(const GpuIds& gpuids,size_t *mem_GPU_global){
             cudaSetDevice(gpuids[dev]);
             cudaMemGetInfo(&memfree,&memtotal);
             if(dev==0) *mem_GPU_global=memfree;
-            if(memfree<memtotal/2){
-                mexErrMsgIdAndTxt("tvDenoise:tvdenoising:GPU","One (or more) of your GPUs is being heavily used by another program (possibly graphics-based).\n Free the GPU to run TIGRE\n");
-            }
+            // if(memfree<memtotal/2){
+            //     mexErrMsgIdAndTxt("tvDenoise:tvdenoising:GPU","One (or more) of your GPUs is being heavily used by another program (possibly graphics-based).\n Free the GPU to run TIGRE\n");
+            // }
             cudaCheckErrors("Check mem error");
             
             *mem_GPU_global=(memfree<*mem_GPU_global)?memfree:*mem_GPU_global;
